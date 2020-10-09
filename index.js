@@ -46,14 +46,19 @@ function loginFetch(email, password) {
   })
 }
 
+//
 function renderUserProfile() {
   //console.log(localStorage.getItem('jwt_token'));
   fetch(`${baseURL}/profile`, {
     method: 'GET',
-    headers: `Bearer ${localStorage.getItem('jwt_token')}`
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
+    }
   })
-  .then(resp => console.log(resp))
-
+  .then(resp => resp.json())
+  .then(json => {
+    alert(`Welcome back ${json.user.name}!`)
+  })
 }
 
 
