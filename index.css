@@ -1,0 +1,12 @@
+#login-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-height: 300px;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+#login-box {
+  max-width: 50%;
+  float: left;
+}

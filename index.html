@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Materialize START--> 
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Materialize END--> 
+  
+  <script src="index.js"></script>
+  <script src="models/entry.js"></script>
+  <script src="models/user.js"></script>
+  <script src="models/word.js"></script>
+  <link rel="stylesheet" href="index.css">
+
+
+  <title>My Portuguese Journal</title>
+</head>
+<body>  
+  <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">menu</i></div>
+      <div class="collapsible-body">
+        <span>
+          <div class="row">
+            <form class="col s12">
+                <div id="login-wrapper" class="row">
+                  <div id="login-box">
+                    <p>Login Here:</p>
+                  </div>
+                  <div id="login-box" class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="icon_prefix" type="text" class="validate">
+                    <label for="icon_prefix">Email:</label>
+                  </div>
+                  <div id="login-box" class="input-field col s6">
+                    <i class="material-icons prefix">lock</i>
+                    <input id="icon_telephone" type="tel" class="validate">
+                    <label for="icon_telephone">Password:</label>
+                    <input type="submit" value="Submit">
+                  </div>
+                  <div id="login-box">
+                    <div id="submit">
+                    </div>
+                  </div>
+                </div>
+            </form>
+          </div>
+        </span>
+      </div>
+    </li>
+  </ul>
+
+  <div class="container">
+    <div class="card">
+      <div class="card-content">
+        <h2 id="title" class="center">My Portuguese Journal</h2>
+        <p id="description" class="center">Build your vocabulary with our word of the day</p>
+        <p id="description" class="center">If you'd like more than just the word of the day you can also select our random word gernerator!</p>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="card">
+      <div class="card-content">
+        <p id="description" class="center">Your Word of the Day is:</p>
+        <h3 id="form-title" class="center">PALAVRA AQUI</h3>
+        <p id="form-description" class="center">Create a sentence using the palavra do dia!</p>
+
+        <form id="entry-form">
+          <div class="input-field">
+            <textarea type="text" name="entry-content" id="entry-content"></textarea>
+            <label for="entry-content">Journal Entry:</label>
+          </div>
+
+          <input type="submit" value="Create Entry" class="btn" id="submit-btn">
+        </form>
+
+        <h4>Your Journal</h4>
+        <hr>
+
+        <div id="journal"></div>
+
+        <hr>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
