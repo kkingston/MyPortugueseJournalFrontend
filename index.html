@@ -76,7 +76,23 @@
     <div class="card">
       <div class="card-content">
         <p id="description" class="center">Your Word of the Day is:</p>
-        <h3 id="form-title" class="center">PALAVRA AQUI</h3>
+        <div id="word-wrapper">
+          <div id="word-display">
+            <h3 id="word" class="center">PALAVRA AQUI</h3>
+            <h5 id="word-pos" class="center">POS of word.  Ex: noun.</h5>
+            <h5 id="word-definition" class="center">Here is the word definition</h5>
+            <div id="translate">
+              <div>If you need to translate the current definition to your language, click <a href="https://translate.google.pt/?hl=pt-PT" target="_blank">HERE</a></div>
+            </div>
+          </div>
+          <br>
+          <div id="word-btn">
+            <button class="btn" onclick="newWord()">New Word</button>
+          </div>
+        </div>
+        <br>
+        <br>
+
         <p id="form-description" class="center">Create a sentence using the palavra do dia!</p>
 
         <form id="entry-form">
@@ -91,7 +107,7 @@
         <h4>Your Journal</h4>
         <hr>
 
-        <div id="journal"></div>
+        <div id="journal-list"></div>
 
         <hr>
       </div>

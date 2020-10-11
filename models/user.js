@@ -6,10 +6,4 @@ class User {
     this.username = username;
     this.email = email;
   }
-
-  //render user instance method
-
-  renderUser() {
-    let userDiv = document.getElementById("users-container")
-  }
 }
