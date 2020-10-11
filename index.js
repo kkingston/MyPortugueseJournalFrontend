@@ -13,11 +13,43 @@ const entryDate = () => document.getElementById('entry-content');
 const entryWord = () => document.getElementById('word');
 const submitButton = () => document.getElementById('submit-btn');
 const baseURL = 'http://localhost:3000/api/v1'
+const journal = [];
 
 document.addEventListener('DOMContentLoaded', callOnLoad);
 
 //to DOM contentLoaded
 function callOnLoad(){
-  loginForm().addEventListener('submit', (e) => loginFormHandler(e));
-  entryForm().addEventListener('submit', (e) => createEntry(e));
+  entryForm().addEventListener('submit', createEntry);
+
+  }
+
+function createEntry(e) {  //create
+
+  e.preventDefault();
+  
+  const entry = {
+    content: entryContent().value
+  }
+
+  debugger;
+
+  journal.push(entry); //save
+  displayjournal(entry);
+  resetInputs();
+}
+
+function displayjournal(entry) { //display
+  const div = document.createElement('div');
+  const p = document.createElement('p');
+
+  p.innerText = entry.content;
+
+  div.appendChild(p);
+
+  journalList().appendChild(div);
+
+}
+
+function resetInputs() {
+  entryContent().value = '';
 }
