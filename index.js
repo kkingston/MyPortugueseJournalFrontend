@@ -9,23 +9,23 @@ const content = () => document.getElementById('title');
 const entryForm = () => document.getElementById('entry-form');
 const journalList = () => document.getElementById('journal-list');
 const entryContent = () => document.getElementById('entry-content');
-const entryDate = () => document.getElementById('entry-content');
-const entryWord = () => document.getElementById('word');
+const entryDate = () => document.getElementById('date-input');
+const entryWord = () => document.getElementById('word-input');
 const submitButton = () => document.getElementById('submit-btn');
 const wordWrapper = () => document.getElementById('word-wrapper');
 const wordDisplay = () => document.getElementById('word');
 const posDisplay = () => document.getElementById('word-pos');
 const definitionDisplay = () => document.getElementById('word-definition');
-
 const wordBtn = () => document.getElementById('word-btn');
-const baseURL = 'http://localhost:3000'
+
+const baseURL = 'http://localhost:3000/api/v1'
 
 document.addEventListener('DOMContentLoaded', callOnLoad);
-
 
 //to DOM contentLoaded
 function callOnLoad(){
   loadJournal();
+  fetchWords();
   entryForm().addEventListener('submit', createEntry);
   wordWrapper().addEventListener('click', randomWord);
 }
@@ -37,7 +37,22 @@ function loadJournal() {
 }
 
 function displayJournal(entries) {
-  entries.forEach(entry => displayEntries(entry))
+  entries.forEach(obj => displayEntries(obj))
+}
+
+function displayEntries(entry) { //display
+  const div = document.createElement('div');
+  const p = document.createElement('p');
+  const h6 = document.createElement('h6');
+  const h5 = document.createElement('h5');
+
+  h6.innerText = entry.word;
+  p.innerText = entry.content;
+  h5.innerText = entry.date;
+
+  div.appendChild(p, h5);
+
+  journalList().appendChild(div);
 }
 
 function createEntry(e) {  //create
@@ -46,8 +61,8 @@ function createEntry(e) {  //create
   const strongParams = {
     entry: {
       content: entryContent().value,
-      //word: entryWord().value
-
+      word: entryWord().value,
+      date: entryDate().value
     }
   }
 
@@ -60,63 +75,37 @@ function createEntry(e) {  //create
     body: JSON.stringify(strongParams)
   })
   .then(resp => console.log(resp))
-  .then(entry => {
-    displayEntries(entry)
-    //debugger;
+  .then(obj => {
+    displayEntries(obj)
   })
   
   resetInputs()
 }
 
-function displayEntries(entry) { //display
-  const div = document.createElement('div');
-  const p = document.createElement('p');
-  const h6 = document.createElement('h6');
-  const h5 = document.createElement('h5');
-
-  //h6.innerText = entry.word;
-  p.innerText = entry.content;
-  //h5.innerText = entry.created_at;
-
-  div.appendChild(p, h5);
-
-  journalList().appendChild(div);
-
-}
 
 //Word generator
+
+//What are we doing?  Fetch all the words from the Rails db
+//What do we do with this?  put the words in an array so we can use it with the randomWords()
 
 function resetInputs() {
   entryContent().value = '';
 }
 
-const wordsArray = { "words": [
- { 'headword': {
-      'word' : 'Maca',
-      'pos': 'noun',
-      'definition': 'Red fruit that grows on a tree. Apple'
- }, 
-    'headword': {
-      'word' : 'Pessego',
-      'pos': 'noun',
-      'definition': 'Fuzzy fruit that is good in pies. Peach'
-  },
-    'headword': {
-      'word' : 'Pera',
-      'pos': 'noun',
-      'definition': "Green fruit that's similar to an apple. Pear"
-  },
-    'headword': {
-      'word' : 'Ananas',
-      'pos': 'noun',
-      'definition': 'Tropical fruit with a big crown. Pineapple.'
-  }
-}]
-};
+const wordsArray = [];
+
+function fetchWords() {
+  fetch(`${baseURL}/words`)
+  .then(resp => resp.json())
+  .then(obj => wordsArray.push(obj))
+}
 
 function randomWord() {
-  const wordIndex = Math.floor(Math.random() * wordsArray.words.length)
-  wordDisplay().innerText = wordsArray.words[wordIndex].headword.word
-  posDisplay().innerText = 'Part of Speech: ' + wordsArray.words[wordIndex].headword.pos
-  definitionDisplay().innerText = 'Definition: ' + wordsArray.words[wordIndex].headword.definition
+  const wordIndex = Math.floor(Math.random() * wordsArray[0].length)
+    wordDisplay().innerText = wordsArray[0][wordIndex].word
+    posDisplay().innerText = 'Part of Speech: ' + wordsArray[0][wordIndex].pos
+    definitionDisplay().innerText = 'Definition: ' + wordsArray[0][wordIndex].definition
+    entryWord().innerText = wordsArray[0][wordIndex].word
+
+
 }
