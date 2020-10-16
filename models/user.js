@@ -6,4 +6,8 @@ class User {
     this.username = username;
     this.email = email;
   }
+
+  renderUser() {
+    let userDiv = document.getElementById("users-container")
+  }
 }
