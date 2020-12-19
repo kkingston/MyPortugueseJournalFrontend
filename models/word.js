@@ -6,7 +6,6 @@ class Word {
     this.definition = word.definition;
     this.pos = word.pos;
     Word.wordsArray.push(this)
-
   }
   
   static wordDisplay = () => document.getElementById('word');
@@ -19,13 +18,13 @@ class Word {
   
 
   static randomWord() {
-    //debugger
     const currentWordIndex = Math.floor(Math.random() * Word.wordsArray.length)
     Word.wordDisplay().innerText = Word.wordsArray[currentWordIndex].word
     Word.posDisplay().innerText = 'Part of Speech: ' + Word.wordsArray[currentWordIndex].pos
     Word.definitionDisplay().innerText = 'Definition: ' + Word.wordsArray[currentWordIndex].definition
     Word.entryWord().innerText = Word.wordsArray[currentWordIndex].word
     Word.wordId().innerText = Word.wordsArray[currentWordIndex].id
+    //Location.reload()
   }
 }
   Word.wordsArray = [];

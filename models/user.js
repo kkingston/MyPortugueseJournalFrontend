@@ -1,12 +1,10 @@
 class User {
 
   constructor(user){
-    //debugger
     this.id = user.id;
     this.name = user.name;
     this.username = user.username;
     this.email = user.email;
-    //User.current.push(this)
   }
 
 
@@ -21,7 +19,9 @@ class User {
     App.loginFetch(emailInput, passwordInput)
     
   }
-  
+} 
+
+
   //static currentUser(newUser) {
   //  User.current.push(newUser)
     //User.current.unshift(user)[0]
@@ -30,6 +30,3 @@ class User {
     // h6.innerText = this.user.name;
     // header().appendChild(h6);
   //}
-}
-
-//User.current = [];

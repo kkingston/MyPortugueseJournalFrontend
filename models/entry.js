@@ -2,7 +2,6 @@
 class Entry {
 
   constructor(entry, entryWord, entryUser) {
-    //debugger
     this.id = entry.id
     this.content = entry.content,
     this.date = entry.date,
@@ -20,8 +19,7 @@ class Entry {
   static entryDate = () => document.getElementById('date-input');
   static entryWord = () => document.getElementById('word-input');
   
-  display() { //display
-    //debugger
+  display() { 
     const div = document.createElement('div');
     const p = document.createElement('p'); 
     const h6 = document.createElement('h6');
@@ -53,8 +51,7 @@ class Entry {
       }
     }
     
-    //add user association
-    fetch(`${baseURL}/entries`, {
+      fetch(`${baseURL}/entries`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -63,12 +60,9 @@ class Entry {
       },
       body: JSON.stringify(strongParams)
     })
-    .then(resp => console.log(resp))
+    .then(resp => resp.json())
     .then(entry => {
-          console.log(entry)
-          //debugger
           let newEntry = new Entry(entry, entry.word, entry.user) 
-          //Entry.journalList().innerHTML += newEntry.displayEntries()
           Entry.all.push(newEntry)
           newEntry.display()
     }) 
